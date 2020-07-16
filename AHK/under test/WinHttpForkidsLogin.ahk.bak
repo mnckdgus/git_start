@@ -1,0 +1,43 @@
+﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+; #Warn  ; Enable warnings to assist with detecting common errors.
+SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+
+a::
+아이디 := mnckdgus@naver.com
+비번 := amn313aA!
+data := {"client_id":"UCFQIBMNFoUk5e19SDujYKTYC463r7rI","username":"아이디","password":"비번","realm":"ml-for-kids-users","credential_type":"http://auth0.com/oauth/grant-type/password-realm"}
+
+Winhttp := ComObjCreate("WinHttp.WinHttpRequest.5.1") ; 오브젝트 선언
+Winhttp.open("POST","https://login.machinelearningforkids.co.uk/co/authenticate")
+;www.dhlottery.co.kr/userSsl.do?method=login ; userSsl.do? 는 뭐지? → web 주소가 아니라 Raw data의 post를 써야하는구나. ('HTTP/1.1' 는 제외하고)
+
+
+winhttp.SetRequestHeader("Host","login.machinelearningforkids.co.uk")
+winhttp.SetRequestHeader("Connection","keep-alive")
+winhttp.SetRequestHeader("Content-Length","200")
+winhttp.SetRequestHeader("Auth0-Client","eyJuYW1lIjoiYW5ndWxhci1sb2NrIiwidmVyc2lvbiI6IjMuMC40IiwiZW52Ijp7ImxvY2suanMiOiIxMS4yMS4wIiwiYXV0aDAuanMiOiI5LjEyLjIifX0=")
+winhttp.SetRequestHeader("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36")
+winhttp.SetRequestHeader("Content-Type","application/json")
+winhttp.SetRequestHeader("Accept","*/*")
+winhttp.SetRequestHeader("Origin","https://machinelearningforkids.co.uk")
+winhttp.SetRequestHeader("Sec-Fetch-Site","same-site")
+winhttp.SetRequestHeader("Sec-Fetch-Mode","cors")
+winhttp.SetRequestHeader("Sec-Fetch-Dest","empty")
+winhttp.SetRequestHeader("Referer","https://machinelearningforkids.co.uk/")
+winhttp.SetRequestHeader("Accept-Encoding","gzip, deflate, br")
+winhttp.SetRequestHeader("Accept-Language","ko-KR,ko;q=0.9,en;q=0.8")
+winhttp.SetRequestHeader("Cookie","__cfduid=d852dcda3533df615f54df6a73b19f4541593872576; _ga=GA1.3.1823896195.1593872577; did=s%3Av0%3Ae33a6080-be01-11ea-a0e2-bb14997da4ba.7Fr5trcJi%2FbSPFmaqBWlP9KvJZd2GgD%2F9xxWbjACxNo; auth0=s%3ArUJLlkBNyTutj-7JT1K696bR7PJk2n7d.K8CaVn7y1QBJuj2r%2BFJplTXm318krUKMvSP3qUaN244; did_compat=s%3Av0%3Ae33a6080-be01-11ea-a0e2-bb14997da4ba.7Fr5trcJi%2FbSPFmaqBWlP9KvJZd2GgD%2F9xxWbjACxNo; auth0_compat=s%3ArUJLlkBNyTutj-7JT1K696bR7PJk2n7d.K8CaVn7y1QBJuj2r%2BFJplTXm318krUKMvSP3qUaN244; _gid=GA1.3.410823040.1594125974")
+
+
+
+
+
+
+
+winHttp.Send(data)
+Winhttp.WaitForResponse
+msgbox % winhttp.responsetext
+
+
+

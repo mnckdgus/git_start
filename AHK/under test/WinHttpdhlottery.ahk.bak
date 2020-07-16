@@ -1,0 +1,33 @@
+﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+; #Warn  ; Enable warnings to assist with detecting common errors.
+SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+
+
+아이디 := mnckdgus
+비번 := amn313aA%21 ; fiddler엔 !가 %21 로 떠있다. encode가 필요하다.
+data := "returnUrl=&newsEventYn=&userId=" 아이디 "&password=" 비번 "&checkSave=on"
+
+Winhttp := ComObjCreate("WinHttp.WinHttpRequest.5.1") ; 오브젝트 선언
+
+Winhttp.open("POST","https://www.dhlottery.co.kr/userSsl.do?method=login")
+
+winhttp.SetRequestHeader("Host","www.dhlottery.co.kr")
+winhttp.SetRequestHeader("Connection","keep-alive")
+winhttp.SetRequestHeader("Content-Length","75")
+winhttp.SetRequestHeader("Cache-Control","max-age=0")
+winhttp.SetRequestHeader("Origin","https://www.dhlottery.co.kr")
+winhttp.SetRequestHeader("Upgrade-Insecure-Requests","1")
+winhttp.SetRequestHeader("Content-Type","application/x-www-form-urlencoded")
+winhttp.SetRequestHeader("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36")
+winhttp.SetRequestHeader("Sec-Fetch-User","?1")
+winhttp.SetRequestHeader("Accept","text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9")
+winhttp.SetRequestHeader("Sec-Fetch-Site","same-origin")
+winhttp.SetRequestHeader("Sec-Fetch-Mode","navigate")
+winhttp.SetRequestHeader("Referer","https://www.dhlottery.co.kr/user.do?method=login&returnUrl=")
+winhttp.SetRequestHeader("Accept-Encoding","gzip, deflate, br")
+winhttp.SetRequestHeader("Accept-Language","ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7")
+
+winHttp.Send(data)
+Winhttp.WaitForResponse
+msgbox % winhttp.responsetext
