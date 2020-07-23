@@ -1,0 +1,12 @@
+from pywinauto.application import Application
+
+
+#app = Application.start("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe")
+app = Application.start("C:\Program Files (x86)\Internet Explorer\iexplore.exe")
+app.window_().TypeKeys({F11})
+app.window_().TypeKeys('https://www.yogiyo.co.kr')
+time.sleep(5)
+
+
+
+출처: https://wingsh.tistory.com/142 [꾸준함의 위대함]
